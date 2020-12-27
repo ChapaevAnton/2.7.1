@@ -17,7 +17,10 @@ public class Calculator {
         } while (enter.next().charAt(0)!='s');
 
     }
-
+//OPTIMIZE
+//TODO
+//FIXME Нужно переработать этот метод так чтобы цикл на потоврение ввода
+// был внутри него, и прерывать его как только 'c'
     private float getNumber() {
         float number;
         System.out.print("Введите число:");
