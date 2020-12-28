@@ -64,6 +64,7 @@ public class Calculator {
             }
             default:
                 System.out.println("Вы допустили ошибку при вводе типа операции. Попробуйте еще раз!!!");
+                operation.setOperator(getOperation());
                 result = getCalculate(opr1, opr2, operation);
         }
         return result;
