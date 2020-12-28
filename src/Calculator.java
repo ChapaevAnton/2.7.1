@@ -3,19 +3,23 @@ import java.util.Scanner;
 public class Calculator {
 
     private Scanner enter = new Scanner(System.in);
+    private float result = 0F;
 
+    //TODO 2.7.2*
     public void calculate() {
         Operand opr1 = new Operand(getNumber());
-        Operand opr2 = new Operand(getNumber());
-        Operand operation = new Operand(getOperation());
-        System.out.println(getCalculate(opr1, opr2, operation));
 
+        while (true) {
+            Operand opr2 = new Operand(getNumber());
+            Operator operation = new Operator(getOperation());
+            result = getCalculate(opr1, opr2, operation);
+            System.out.println(result);
+            opr1.setOperand(result);
 
+        }
     }
 
-
-//TODO 2.7.1
-
+    //TODO 2.7.1
     public float getNumber() {
         float number;
         System.out.print("Введите число:");
@@ -36,8 +40,8 @@ public class Calculator {
         return operation;
     }
 
-    public float getCalculate(Operand opr1, Operand opr2, Operand operation) {
-        float result;
+    public float getCalculate(Operand opr1, Operand opr2, Operator operation) {
+        float result = 0F;
         switch (operation.getOperator()) {
             case '+': {
                 result = opr1.getOperand() + opr2.getOperand();
@@ -62,6 +66,15 @@ public class Calculator {
                 }
                 break;
             }
+            case 'c': {
+                System.out.println("Сброс!");
+                result = getCalculate(
+                        new Operand(getNumber()),
+                        new Operand(getNumber()),
+                        new Operator(getOperation()));
+                break;
+            }
+
             default:
                 System.out.println("Вы допустили ошибку при вводе типа операции. Попробуйте еще раз!!!");
                 operation.setOperator(getOperation());
@@ -69,6 +82,5 @@ public class Calculator {
         }
         return result;
     }
-
 
 }
