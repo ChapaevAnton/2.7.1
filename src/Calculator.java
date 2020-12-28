@@ -13,11 +13,12 @@ public class Calculator {
         System.out.println("калькулятор\ns - выход, c - сброс");
         opr1 = new Operand(getNumber());
         do {
-            opr2 = new Operand(getNumber());
             operation = new Operator(getOperation());
+            if ((operation.getOperator() != 's')&&(operation.getOperator() != 'c')) opr2 = new Operand(getNumber());
             result = getCalculate(opr1, opr2, operation);
             System.out.println(result);
             opr1.setOperand(result);
+
         } while (operation.getOperator() != 's');
     }
 
@@ -73,15 +74,17 @@ public class Calculator {
                 break;
             }
 
+            //TODO 2.7.2*
             case 'c': {
                 System.out.println("Сброс!");
                 this.opr1 = new Operand(getNumber());
-                this.opr2 = new Operand(getNumber());
                 this.operation = new Operator(getOperation());
-                result = getCalculate(this.opr1,this.opr2,this.operation);
+                this.opr2 = new Operand(getNumber());
+                result = getCalculate(this.opr1, this.opr2, this.operation);
                 break;
             }
 
+            //TODO 2.7.2*
             case 's': {
                 result = 0F;
                 break;
