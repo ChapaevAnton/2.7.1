@@ -14,6 +14,8 @@ public class Calculator {
         opr1 = new Operand(getNumber());
         do {
             operation = new Operator(getOperation());
+            //FIXME возможно этот if как то можно написать по другому,
+            // сделано что бы не появлялся ввод второго операнда после сброса и остановки программы
             if ((operation.getOperator() != 's') && (operation.getOperator() != 'c')) opr2 = new Operand(getNumber());
             result = getCalculate(opr1, opr2, operation);
             System.out.println(result);
@@ -79,6 +81,8 @@ public class Calculator {
                 System.out.println("Сброс!");
                 this.opr1 = new Operand(getNumber());
                 this.operation = new Operator(getOperation());
+                //FIXME возможно этот if как то можно написать по другому,
+                // сделано что бы не появлялся ввод второго операнда после сброса и остановки программы
                 if ((this.operation.getOperator() != 's') && (this.operation.getOperator() != 'c')) this.opr2 = new Operand(getNumber());
                 result = getCalculate(this.opr1, this.opr2, this.operation);
                 break;
