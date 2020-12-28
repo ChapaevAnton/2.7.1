@@ -14,7 +14,7 @@ public class Calculator {
         opr1 = new Operand(getNumber());
         do {
             operation = new Operator(getOperation());
-            if ((operation.getOperator() != 's')&&(operation.getOperator() != 'c')) opr2 = new Operand(getNumber());
+            if ((operation.getOperator() != 's') && (operation.getOperator() != 'c')) opr2 = new Operand(getNumber());
             result = getCalculate(opr1, opr2, operation);
             System.out.println(result);
             opr1.setOperand(result);
@@ -79,7 +79,7 @@ public class Calculator {
                 System.out.println("Сброс!");
                 this.opr1 = new Operand(getNumber());
                 this.operation = new Operator(getOperation());
-                this.opr2 = new Operand(getNumber());
+                if ((this.operation.getOperator() != 's') && (this.operation.getOperator() != 'c')) this.opr2 = new Operand(getNumber());
                 result = getCalculate(this.opr1, this.opr2, this.operation);
                 break;
             }
