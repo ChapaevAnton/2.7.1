@@ -2,26 +2,18 @@ import java.util.Scanner;
 
 public class Calculator {
 
-//FIXME Задание 2.7.2* Недоработано, смысл в том что бы вводить C или S в любой момент.
-    public void calculate() {
+    //FIXME Задание 2.7.2* Недоработано, смысл в том что бы вводить C или S в любой момент.
+//    public void calculate() {
+//
+//
+//
+//    }
 
-        float result;
-
-        Operand opr1 = new Operand(getNumber());
-        Operand opr2 = new Operand(getNumber());
-        Scanner enter = new Scanner(System.in);
-        do {
-            result = getCalculate(opr1, opr2, getOperation());
-            System.out.println(result);
-
-        } while (enter.next().charAt(0)!='s');
-
-    }
-//OPTIMIZE
+    //OPTIMIZE
 //TODO
 //FIXME Нужно переработать этот метод так чтобы цикл на потоврение ввода
 // был внутри него, и прерывать его как только 'c'
-    private float getNumber() {
+    public float getNumber() {
         float number;
         System.out.print("Введите число:");
         Scanner enter = new Scanner(System.in);
@@ -35,7 +27,7 @@ public class Calculator {
         return number;
     }
 
-    private char getOperation() {
+    public char getOperation() {
         char operation;
         System.out.print("Введите тип операции(+,-,*,/):");
         Scanner enter = new Scanner(System.in);
@@ -43,8 +35,8 @@ public class Calculator {
         return operation;
     }
 
-    private float getCalculate(Operand opr1, Operand opr2, char operator) {
-        float result = 0F;
+    public float getCalculate(Operand opr1, Operand opr2, char operator) {
+        float result;
         switch (operator) {
             case '+': {
                 result = opr1.getOpr() + opr2.getOpr();
@@ -60,10 +52,12 @@ public class Calculator {
                 break;
             }
             case '/': {
-                if (opr2.getOpr() != 0) {
+                if (opr2.getOpr() != 0 && operator == '/') {
                     result = opr1.getOpr() / opr2.getOpr();
                 } else {
                     System.out.println("Деление на ноль!!!");
+                    opr2.setOpr(getNumber());
+                    result = getCalculate(opr1, opr2, getOperation());
                 }
                 break;
             }
