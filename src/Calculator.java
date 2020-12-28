@@ -3,24 +3,25 @@ import java.util.Scanner;
 public class Calculator {
 
     private Scanner enter = new Scanner(System.in);
-    private float result = 0F;
 
     //TODO 2.7.2*
     public void calculate() {
-        Operand opr1 = new Operand(getNumber());
-
-        while (true) {
-            Operand opr2 = new Operand(getNumber());
-            Operator operation = new Operator(getOperation());
+        Operand opr1, opr2;
+        Operator operation;
+        float result;
+        System.out.println("калькулятор\ns - выход, c - сброс");
+        opr1 = new Operand(getNumber());
+        do {
+            opr2 = new Operand(getNumber());
+            operation = new Operator(getOperation());
             result = getCalculate(opr1, opr2, operation);
             System.out.println(result);
             opr1.setOperand(result);
-
-        }
+        } while (operation.getOperator() != 's');
     }
 
     //TODO 2.7.1
-    public float getNumber() {
+    private float getNumber() {
         float number;
         System.out.print("Введите число:");
         if (enter.hasNextFloat()) {
@@ -33,15 +34,15 @@ public class Calculator {
         return number;
     }
 
-    public char getOperation() {
+    private char getOperation() {
         char operation;
         System.out.print("Введите тип операции(+,-,*,/):");
         operation = enter.next().charAt(0);
         return operation;
     }
 
-    public float getCalculate(Operand opr1, Operand opr2, Operator operation) {
-        float result = 0F;
+    private float getCalculate(Operand opr1, Operand opr2, Operator operation) {
+        float result;
         switch (operation.getOperator()) {
             case '+': {
                 result = opr1.getOperand() + opr2.getOperand();
@@ -75,6 +76,10 @@ public class Calculator {
                 break;
             }
 
+            case 's': {
+                result = 0F;
+                break;
+            }
             default:
                 System.out.println("Вы допустили ошибку при вводе типа операции. Попробуйте еще раз!!!");
                 operation.setOperator(getOperation());
