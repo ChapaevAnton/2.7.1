@@ -4,9 +4,7 @@ public class MyApp1 {
 
         Calculator calculator = new Calculator();
         
-        Operand opr1 = new Operand(calculator.getNumber());
-        Operand opr2 = new Operand(calculator.getNumber());
-        System.out.println(calculator.getCalculate(opr1,opr2, calculator.getOperation()));
+        calculator.calculate();
 
 
     }

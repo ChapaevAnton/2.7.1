@@ -1,15 +1,28 @@
 public class Operand {
-    private float opr;
+    private float operand;
+    private char operator;
 
-    public Operand(float opr) {
-        this.opr = opr;
+    public Operand(float operand) {
+        this.operand = operand;
     }
 
-    public float getOpr() {
-        return opr;
+    public Operand(char operator) {
+        this.operator = operator;
     }
 
-    public void setOpr(float opr) {
-        this.opr = opr;
+    public float getOperand() {
+        return operand;
+    }
+
+    public void setOperand(float operand) {
+        this.operand = operand;
+    }
+
+    public char getOperator() {
+        return operator;
+    }
+
+    public void setOperator(char operator) {
+        this.operator = operator;
     }
 }

@@ -2,21 +2,23 @@ import java.util.Scanner;
 
 public class Calculator {
 
-    //FIXME Задание 2.7.2* Недоработано, смысл в том что бы вводить C или S в любой момент.
-//    public void calculate() {
-//
-//
-//
-//    }
+    private Scanner enter = new Scanner(System.in);
 
-    //OPTIMIZE
-//TODO
-//FIXME Нужно переработать этот метод так чтобы цикл на потоврение ввода
-// был внутри него, и прерывать его как только 'c'
+    public void calculate() {
+        Operand opr1 = new Operand(getNumber());
+        Operand opr2 = new Operand(getNumber());
+        Operand operation = new Operand(getOperation());
+        System.out.println(getCalculate(opr1, opr2, operation));
+
+
+    }
+
+
+//TODO 2.7.1
+
     public float getNumber() {
         float number;
         System.out.print("Введите число:");
-        Scanner enter = new Scanner(System.in);
         if (enter.hasNextFloat()) {
             number = enter.nextFloat();
         } else {
@@ -30,40 +32,39 @@ public class Calculator {
     public char getOperation() {
         char operation;
         System.out.print("Введите тип операции(+,-,*,/):");
-        Scanner enter = new Scanner(System.in);
         operation = enter.next().charAt(0);
         return operation;
     }
 
-    public float getCalculate(Operand opr1, Operand opr2, char operator) {
+    public float getCalculate(Operand opr1, Operand opr2, Operand operation) {
         float result;
-        switch (operator) {
+        switch (operation.getOperator()) {
             case '+': {
-                result = opr1.getOpr() + opr2.getOpr();
+                result = opr1.getOperand() + opr2.getOperand();
                 break;
             }
             case '-': {
-                result = opr1.getOpr() - opr2.getOpr();
+                result = opr1.getOperand() - opr2.getOperand();
                 break;
             }
             case '*': {
-                result = opr1.getOpr() * opr2.getOpr();
+                result = opr1.getOperand() * opr2.getOperand();
 
                 break;
             }
             case '/': {
-                if (opr2.getOpr() != 0 && operator == '/') {
-                    result = opr1.getOpr() / opr2.getOpr();
+                if (opr2.getOperand() != 0 && operation.getOperator() == '/') {
+                    result = opr1.getOperand() / opr2.getOperand();
                 } else {
                     System.out.println("Деление на ноль!!!");
-                    opr2.setOpr(getNumber());
-                    result = getCalculate(opr1, opr2, getOperation());
+                    opr2.setOperand(getNumber());
+                    result = getCalculate(opr1, opr2, operation);
                 }
                 break;
             }
             default:
                 System.out.println("Вы допустили ошибку при вводе типа операции. Попробуйте еще раз!!!");
-                result = getCalculate(opr1, opr2, getOperation());
+                result = getCalculate(opr1, opr2, operation);
         }
         return result;
     }
