@@ -1,53 +1,59 @@
-public class Loader {
+import java.util.Arrays;
+
+public class Test {
     public static void main(String[] args) {
-        char ch1 = 'h'; //переменная символьного типа, с начальным значениме h
-        char ch2 = 'i'; //переменная символьного типа, с начальным значениме i
-        char ch3 = 'b'; //переменная символьного типа, с начальным значениме h
 
-        //выводим в консоль строку с вызовом метода decode - который в свою
-        // очередь возвращает некоторое значение -  строку типа String - это значение result
-        // в зависимости от переданного в метод параметра
-        // символьного типа возвращает соответствующий результат
-        //а именно по условию задачи если в метод передать:
-        //h - он должен вернуть "Hello!"
-        //i,m,k - он он должен вернуть "I can decode!"
-        //b - "Bye!"
-        //И во всех остальных случаях вернуть - "I don’t know these symbols:("
-        //в System.out.println мы его вызываем три раза , с термя разными параметрами, +(складываем в одну строку,
-        // между строками пробел ввиде " ")  чтобы по итогу получить строку "Hello! I can decode! Bye!"
-        System.out.println(decode(ch1) + " " + decode(ch2) + " " + decode(ch3));
-    }
+        String name = "Саша,Маша,Таня";
 
-    //это реализация самого метода
-    public static String decode(char ch) {
+        int x = 5;
+        int[] array = new int[11];
 
-        String result = ""; //иницилизируем переменную строку - String, с пустым значением, эту переменную будет возвращает метод
-
-        //теперь нужно построить условия, для решения тут выбрана оператор switch (хотя можно и if else)
-        switch (ch) { //этот мы передали методу как параметр, при первом вызове decode(ch1) - к примеру - это будет 'h'
-            //тут пошли условия
-            case 'h': //читается примерно так - если ch совпадает с 'h' \
-                      // то выполняем все до break; тоесть возвршаем строку result = "Hello!";
-                result = "Hello!";
-                break;
-            case 'i': //точно так же как и с 'h' - но тут если i,m,k - то вернем result = "I can decode!";
-                //но мы пока по сути еще ничего не вернули мы просто присвоили значение переменной return - если быть датошным
-            //когда сробатывает условие в case - выполняются все камманды до ближайщего break
-            case 'm':
-            case 'k':
-                result = "I can decode!";
-                break;
-            case 'b':
-                result = "Bye!";
-                break;
-            default: //вот тут интересный момент если ни сработало ни одно условие,
-                // то выполняется default - тоесть здесь мы указываем что будем делать если не сработало ни одно из
-                // условий - кокретно в этом примере-контексте это трактуется так.
-                result = "I don’t know these symbols:(";
+        for (int i = 0; i < array.length; i++) {
+            array[i] = x;
+            x++;
         }
-        return result; //кокраз тут мы уже возвращаем значение и метод завершается -
-                        // возврашая строку - в зависимости от условий - значения передеанного параметра ch
+        System.out.println(Arrays.toString(array));
 
-        //p\s В СЛОВАХ МОЖЕТ БЫТЬ МНОГО ОШИБОК ОРФОГРАФИЕСКИХ ПО РУССКОМУ У МЕНЯ 3
+        for (int item : array) {
+            System.out.println(item);
+        }
+
+
+        String[] str = name.split(",");
+
+        System.out.println(Arrays.toString(str));
+        System.out.println(str[0]);
+
+
+        String str1 = "Sometimes";
+        System.out.println(str1.charAt(2));
+
+        String name1 = "Иван Иванов";
+        String name2 = "иван ивАнов";
+        String name3 = "иван пеТРОв Иванов";
+
+
+        System.out.println(name1.equalsIgnoreCase(name2));
+        System.out.println(name1.equals(name2));
+
+        checkUserName(name1, name2);
+        checkUserName(name1, name3);
+
     }
+
+    private static void checkUserName(String name1, String name2) {
+        if (name1.equalsIgnoreCase(name2))
+            System.out.println("Выберите другое имя пользователя");
+        else {
+            System.out.println("Отличное Имя!!!");
+            System.out.println("Длина имени:"+name2.length());
+            name2 = name2.replaceAll(" ","");
+            //name2 = name2.replaceAll(' ', 'c');
+            name2 = name2.replace(' ','\u0000');
+            name2 = name2.replace(" ","");
+            System.out.println("Длина без пробелов:"+name2.length());
+            System.out.println(name2);
+        }
+    }
+
 }
