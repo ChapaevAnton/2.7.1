@@ -1,15 +1,31 @@
+/**
+ * Операнд
+ */
 public class Operand {
-    private float opr;
+    private float operand;
 
-    public Operand(float opr) {
-        this.opr = opr;
+    /**
+     * Создать операнд
+     * @param operand - число типа float
+     */
+    public Operand(float operand) {
+        this.operand = operand;
     }
 
-    public float getOpr() {
-        return opr;
+    /**
+     * Получить текущее значение операнда
+     * @return операнда
+     */
+    public float getOperand() {
+        return operand;
     }
 
-    public void setOpr(float opr) {
-        this.opr = opr;
+    /**
+     * Установить значение операнда
+     * @param operand число типа float
+     */
+    public void setOperand(float operand) {
+        this.operand = operand;
     }
+
 }
