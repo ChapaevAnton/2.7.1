@@ -32,9 +32,9 @@ public class Test {
     }
 
     private static String formatTel(String tel) {
-        //QUESTION:ничего не рассказано про регулярные выражения которые применены "[^0-9]"?
+        //QUESTION 3.2 ничего не рассказано про регулярные выражения которые применены "[^0-9]"?
         String temp = tel.replaceAll("[^0-9]", "");
-        //QUESTION конкотенация ли это?
+        //QUESTION 3.2 конкотенация ли это?
         return String.format("+7 %1$s %2$s %3$s %4$s ",
                 temp.substring(1, 4),
                 temp.substring(4, 7),
@@ -63,9 +63,9 @@ public class Test {
         for (int i = 0; i < words.length; i++) {
             char upCase = words[i].charAt(0);
             if (!Character.isUpperCase(upCase)) {
-                //QUESTION создается ли новая строка в памяти если применять String.format?
+                //QUESTION 3.2 создается ли новая строка в памяти если применять String.format?
                 //str.append(Character.toUpperCase(words[i].charAt(0)) + words[i].substring(1) + " ");
-                //QUESTION %10S - 10 знаков префик,постфикс?
+                //QUESTION 3.2 %10S - 10 знаков префик,постфикс?
                 str.append(String.format("%S%s ", words[i].charAt(0), words[i].substring(1)));
             } else {
                 str.append(words[i]);
@@ -77,7 +77,7 @@ public class Test {
 
     private static void sortByLength(String[] words) {
         //Написать код здесь
-        //QUESTION оправдана ли сортировка StringBuilder?
+        //QUESTION 3.2 оправдана ли сортировка StringBuilder?
         for (int i = 0; i < words.length - 1; i++) {
             for (int j = 0; j < words.length - 1; j++) {
                 if (words[j].length() > words[j + 1].length()) {
