@@ -24,11 +24,38 @@ public class Test {
             if (!isCorrectNumberTel) {
                 System.out.println("Введите корректный номер телефона");
             } else {
-                System.out.println(formatTel(tel));
+                String temp = formatTel(tel);
+                System.out.println(temp);
             }
         }
 
+        String name1 = "Иван Иванов";
+        String name2 = "иван ивАнов";
+        String name3 = "иван пеТРОв Иванов";
 
+        checkUserName(name1, name2);
+        checkUserName(name1, name3);
+
+    }
+
+    private static void checkUserName(String name1, String name2) {
+        if (name1.equalsIgnoreCase(name2))
+            System.out.println("Выберите другое имя пользователя");
+        else {
+            System.out.println("Отличное Имя!!!");
+            System.out.println("Длина имени:" + name2.length());
+            //QUESTION 3.2
+            name2 = name2.replace(' ', '\u0000');
+            name2 = name2.replace(" ", "");
+
+            //QUESTION 3.2
+            name2 = name2.replaceAll(" ", "");
+            //name2 = name2.replaceAll(' ', '\u0000');
+            name2 = name2.replaceAll(Character.toString(' '),Character.toString( '\u0000'));
+
+            System.out.println("Длина без пробелов:" + name2.length());
+            System.out.println(name2);
+        }
     }
 
     private static String formatTel(String tel) {
@@ -115,16 +142,13 @@ public class Test {
 //        String str1 = "Sometimes";
 //        System.out.println(str1.charAt(2));
 //
-//        String name1 = "Иван Иванов";
-//        String name2 = "иван ивАнов";
-//        String name3 = "иван пеТРОв Иванов";
+
 //
 //
 //        System.out.println(name1.equalsIgnoreCase(name2));
 //        System.out.println(name1.equals(name2));
 //
-//        checkUserName(name1, name2);
-//        checkUserName(name1, name3);
+
 //
 //        String formatString = String.format("Имена1: 1-%1$s 2-%2$s 3-%3$s", str[0], str[1], str[2]);
 //        System.out.println(formatString);
@@ -207,19 +231,6 @@ public class Test {
 
 //    }
 
-    private static void checkUserName(String name1, String name2) {
-        if (name1.equalsIgnoreCase(name2))
-            System.out.println("Выберите другое имя пользователя");
-        else {
-            System.out.println("Отличное Имя!!!");
-            System.out.println("Длина имени:" + name2.length());
-            name2 = name2.replaceAll(" ", "");
-            //name2 = name2.replaceAll(' ', 'c');
-            name2 = name2.replace(' ', '\u0000');
-            name2 = name2.replace(" ", "");
-            System.out.println("Длина без пробелов:" + name2.length());
-            System.out.println(name2);
-        }
-    }
+
 
 }
