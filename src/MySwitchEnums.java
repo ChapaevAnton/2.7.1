@@ -80,7 +80,6 @@ public class MySwitchEnums {
     public static void main(String[] args) {
 
         //TODO lambda expressions across Enums
-
         System.out.println(Calc.PLUS.operation(4, 4));
         System.out.println(Calc.MINUS.operation(10, 4));
         System.out.println(Calc.MULTI.operation(10, 4));
@@ -108,6 +107,13 @@ public class MySwitchEnums {
             default -> System.out.println(day);
         }
 
+        //TODO design comparison switch vs elseif
+        if (day == Day.FRIDAY) System.out.println("Hooray!!!!" + day);
+        else if (day == Day.SATURDAY || day == Day.SUNDAY) System.out.println("Выходной день:" + day);
+        else if (day == Day.MONDAY || day == Day.TUESDAY || day == Day.WEDNESDAY || day == Day.THURSDAY)
+            System.out.println("Рабочий день:" + day);
+        else System.out.println(day);
+
         //TODO switch for String
         String str = "понедельник";
         int i = switch (str) {
@@ -125,9 +131,8 @@ public class MySwitchEnums {
                 yield 0;
             }
         };
+
         System.out.println(i);
-
     }
-
 }
 
