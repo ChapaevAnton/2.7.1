@@ -2,8 +2,44 @@ import java.util.Arrays;
 import java.util.Locale;
 import java.util.Scanner;
 
-public class Test {
+public class MyString {
     public static void main(String[] args) {
+
+        String string = "\\Иванов\\\n" +
+                "\tСидоров\t\n" +
+                "\'Петров\'\n" +
+                "\"Петухов\"\n";
+        String newString = """
+                \\Иванов\s'Сидоров'\\ 
+                /'Петров'/\
+                "Петухов"
+                """;
+        String sql = """
+                SELECT
+                  prolongation.datetrn,
+                  prolongation.iduser,
+                  user.iduser AS `iduser(user)`,
+                  user.baruser,
+                  user.surname,
+                  user.name,
+                  user.secondname,
+                  prolongation.prlngtndate,
+                  prolongation.prlngtn,
+                  prolongation.idtrn,
+                  prolongationbook.idtrn AS `idtrn(book)`,
+                  prolongationbook.barcode
+                FROM prolongation
+                  RIGHT OUTER JOIN user
+                    ON prolongation.iduser = user.iduser
+                  RIGHT OUTER JOIN prolongationbook
+                    ON prolongation.idtrn = prolongationbook.idtrn
+                WHERE prolongation.datetrn > DATE_SUB(NOW(), INTERVAL 10 DAY)
+                """;
+
+        System.out.println(string);
+        System.out.println(newString);
+        System.out.println(sql);
+
 
         Scanner scanner = new Scanner(System.in);
         boolean isCorrectName = false;
@@ -51,7 +87,7 @@ public class Test {
             //QUESTION 3.2
             name2 = name2.replaceAll(" ", "");
             //name2 = name2.replaceAll(' ', '\u0000');
-            name2 = name2.replaceAll(Character.toString(' '),Character.toString( '\u0000'));
+            name2 = name2.replaceAll(Character.toString(' '), Character.toString('\u0000'));
 
             System.out.println("Длина без пробелов:" + name2.length());
             System.out.println(name2);
@@ -59,9 +95,9 @@ public class Test {
     }
 
     private static String formatTel(String tel) {
-        //QUESTION 3.2 ничего не рассказано про регулярные выражения которые применены "[^0-9]"?
+        //QUESTION 3.2 Регулярные выражения
         String temp = tel.replaceAll("[^0-9]", "");
-        //QUESTION 3.2 конкотенация ли это?
+        //QUESTION 3.2
         return String.format("+7 %1$s %2$s %3$s %4$s ",
                 temp.substring(1, 4),
                 temp.substring(4, 7),
@@ -90,9 +126,9 @@ public class Test {
         for (int i = 0; i < words.length; i++) {
             char upCase = words[i].charAt(0);
             if (!Character.isUpperCase(upCase)) {
-                //QUESTION 3.2 создается ли новая строка в памяти если применять String.format?
+                //QUESTION 3.2
                 //str.append(Character.toUpperCase(words[i].charAt(0)) + words[i].substring(1) + " ");
-                //QUESTION 3.2 %10S - 10 знаков префик,постфикс?
+                //QUESTION 3.2
                 str.append(String.format("%S%s ", words[i].charAt(0), words[i].substring(1)));
             } else {
                 str.append(words[i]);
@@ -104,7 +140,7 @@ public class Test {
 
     private static void sortByLength(String[] words) {
         //Написать код здесь
-        //QUESTION 3.2 оправдана ли сортировка StringBuilder?
+        //QUESTION 3.2
         for (int i = 0; i < words.length - 1; i++) {
             for (int j = 0; j < words.length - 1; j++) {
                 if (words[j].length() > words[j + 1].length()) {
@@ -230,7 +266,6 @@ public class Test {
 //        System.out.println(javaStringBuffer);
 
 //    }
-
 
 
 }
