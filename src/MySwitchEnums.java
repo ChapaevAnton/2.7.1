@@ -79,7 +79,7 @@ public class MySwitchEnums {
 
     public static void main(String[] args) {
 
-        //TODO alpha expressions across Enums
+        //TODO lambda expressions across Enums
 
         System.out.println(Calc.PLUS.operation(4, 4));
         System.out.println(Calc.MINUS.operation(10, 4));
